@@ -68,8 +68,9 @@ export default function TextForm(props) {
         <textarea className="form-control" style={(props.mode === "light") ? {backgroundColor: "white"} : {backgroundColor: "rgb(30, 50, 50)", color: "white"}} value={text} onChange={handleOnChange} id="textBox" rows="10"></textarea>
       </div>
       <button className="btn btn-primary" onClick={upperCaseOnClick}>Convert to uppercase</button>
-      <button className="btn btn-secondary mx-2" onClick={lowerCaseOnClick}>Convert to lowercase</button>
-      <button className="btn btn-danger" onClick={clearOnClick}>Clear text</button>
+      <br />
+      <button className="btn btn-secondary" onClick={lowerCaseOnClick}>Convert to lowercase</button>
+      <button className="btn btn-danger mx-2" onClick={clearOnClick}>Clear text</button>
       <br />
       <button className="btn btn-success my-2" onClick={capitalizeOnClick}>Capitalize text</button>
       <button className="btn btn-warning mx-2" onClick={copyOnClick}>Copy to clipboard</button>
