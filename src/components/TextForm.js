@@ -74,7 +74,8 @@ export default function TextForm(props) {
       <br />
       <button className="btn btn-success" onClick={capitalizeOnClick}>Capitalize text</button>
       <button className="btn btn-warning mx-2" onClick={copyOnClick}>Copy to clipboard</button>
-      <button className={`btn btn-outline-${(props.mode === "dark") ? "light" : "primary"}`} onClick={removeSpacesOnClick}>Remove spaces</button>
+      <br />
+      <button className={`btn btn-outline-${(props.mode === "dark") ? "light" : "primary"} my-2`} onClick={removeSpacesOnClick}>Remove spaces</button>
       <hr />
     </div>
     <div className="container my-3">
