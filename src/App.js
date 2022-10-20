@@ -1,86 +1,52 @@
 import './App.css';
-// import AboutUs from './components/AboutUs';
+import { useState } from 'react';
+import Alert from './components/Alert';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 
-
-// const user = "Supratim Majumder";
-
-// function formatName(user) {
-//   return user.fname + ' ' + user.lname;
-// }
+import {
+  Route,
+  Routes,
+  BrowserRouter as Router
+} from 'react-router-dom';
 
 function App() {
-  // let userObject = {
-  //   fname: "Sayan",
-  //   lname: "Dhar"
-  // };
+  const [alert, setAlert] = useState(null);
+  const [mode, setMode] = useState("light");
 
-  // return (<>
-  //   <nav>
-  //     <li>Home</li>
-  //     <li>About</li>
-  //     <li>Contact</li>
-  //   </nav>
-  //   <div className="container">
-  //     <h1>Welcome {user}</h1>
-  //     <h3>Hello <i>{formatName(userObject)}</i></h3>
-  //     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis exercitationem sint cupiditate corrupti? At tempore expedita obcaecati. Iste inventore, deleniti similique aliquid quidem incidunt totam et culpa dignissimos. Cumque soluta hic perferendis maiores facere similique?</p>
-  //   </div>
-  // </>);
+  const showAlert = (type, message) => {
+    let newAlert = {
+      type: type,
+      message: message
+    };
+    setAlert(newAlert);
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
+  };
 
-  // return (
-  //   <div className="blank">
-  //     This is Lovely
-  //   </div>
-  // );
-
-  // return (
-  //   <div className="App">
-  //     <header className="App-header">
-  //       <img src={logo} className="App-logo" alt="logo" />
-  //       <p>
-  //         Edit <code>src/App.js</code> and save to reload.
-  //       </p>
-  //       <a
-  //         className="App-link"
-  //         href="https://reactjs.org"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         Learn React with CodeWithHarry
-  //       </a>
-  //     </header>
-  //   </div>
-  // );
-
-  // return (
-  //   <>
-  //     <h1>This is Heading</h1>
-  //     <div className="App">
-  //       <header className="App-header">
-  //         <img src={logo} className="App-logo" alt="logo" />
-  //         <p>
-  //           Edit <code>src/App.js</code> and save to reload.
-  //         </p>
-  //         <a
-  //           className="App-link"
-  //           href="https://reactjs.org"
-  //           target="_blank"
-  //           rel="noopener noreferrer"
-  //         >
-  //           Learn React with CodeWithHarry
-  //         </a>
-  //       </header>
-  //     </div>
-  //   </>
-  // );
+  const toggleMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.color = "white";
+      document.body.style.backgroundColor = "#042735";
+    } else {
+      setMode("light");
+      document.body.style.color = "black";
+      document.body.style.backgroundColor = "white";
+    }
+  };
 
   return (<>
-    {/* <Navbar /> */}
-    <Navbar title="TextUtils" homeText="Home" aboutText="About Us" />
-    <TextForm heading="Enter the text to analyze below" />
-    {/* <AboutUs /> */}
+    <Router>
+      <Navbar mode={mode} toggleMode={toggleMode} />
+      <Alert alert={alert} />
+      <Routes>
+        <Route exact path="/" element={<TextForm mode={mode} showAlert={showAlert} />} />
+        <Route exact path="/about" element={<About mode={mode} />} />
+      </Routes>
+    </Router>
   </>);
 }
 
