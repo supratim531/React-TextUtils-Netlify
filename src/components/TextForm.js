@@ -67,15 +67,15 @@ export default function TextForm(props) {
       <div className="mb-3">
         <textarea className="form-control" style={(props.mode === "light") ? {backgroundColor: "white"} : {backgroundColor: "rgb(30, 50, 50)", color: "white"}} value={text} onChange={handleOnChange} id="textBox" rows="10"></textarea>
       </div>
-      <button className="btn btn-primary" onClick={upperCaseOnClick}>Convert to uppercase</button>
+      <button disabled={text.length === 0} className="btn btn-primary" onClick={upperCaseOnClick}>Convert to uppercase</button>
       <br />
-      <button className="btn btn-secondary my-2" onClick={lowerCaseOnClick}>Convert to lowercase</button>
-      <button className="btn btn-danger mx-2" onClick={clearOnClick}>Clear text</button>
+      <button disabled={text.length === 0} className="btn btn-secondary my-2" onClick={lowerCaseOnClick}>Convert to lowercase</button>
+      <button disabled={text.length === 0} className="btn btn-danger mx-2" onClick={clearOnClick}>Clear text</button>
       <br />
-      <button className="btn btn-success" onClick={capitalizeOnClick}>Capitalize text</button>
-      <button className="btn btn-warning mx-2" onClick={copyOnClick}>Copy to clipboard</button>
+      <button disabled={text.length === 0} className="btn btn-success" onClick={capitalizeOnClick}>Capitalize text</button>
+      <button disabled={text.length === 0} className="btn btn-warning mx-2" onClick={copyOnClick}>Copy to clipboard</button>
       <br />
-      <button className={`btn btn-outline-${(props.mode === "dark") ? "light" : "primary"} my-2`} onClick={removeSpacesOnClick}>Remove spaces</button>
+      <button disabled={text.length === 0 || (text.indexOf("  ") === -1 && text.indexOf(' ') !== 0)} className={`btn btn-outline-${(props.mode === "dark") ? "light" : "primary"} my-2`} onClick={removeSpacesOnClick}>Remove extra spaces</button>
       <hr />
     </div>
     <div className="container my-3">
