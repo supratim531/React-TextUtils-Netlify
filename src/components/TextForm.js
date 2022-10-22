@@ -53,7 +53,7 @@ export default function TextForm(props) {
 
   const wordsCount = (text) => {
     let count = 0;
-    let arr = text.split(' ');
+    let arr = text.split(/\s+/);
     arr.forEach(element => {
       if (element !== '')
         count++;
